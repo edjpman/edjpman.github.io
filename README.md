@@ -6,4 +6,7 @@ MS Data Science - University of Arizona<br>
 BS Economics - Arizona State University
 
 
-### [medVec NLP Project →](./medVec/)
+
+### Projects
+
+#### [medVec NLP Project ](https://edjpman.github.io/medVec/)
