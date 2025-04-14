@@ -2,3 +2,10 @@ title: Ethan Parks
 logo: /assets/img/IMG_5486.jpg
 description: Data Enthusiast - Mountain Athlete
 theme: jekyll-theme-minimal
+
+#For adding new links to site
+navigation:
+  - title: Home
+    url: /
+  - title: Projects
+    url: /medVec/
