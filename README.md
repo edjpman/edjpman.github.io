@@ -2,7 +2,7 @@
 
 ### Education
 
-MS Data Science - University of Arizona
+MS Data Science - University of Arizona<br>
 BS Economics - Arizona State University
 
 
