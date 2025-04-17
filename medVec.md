@@ -4,6 +4,14 @@ title: Projects
 permalink: /medVec/
 ---
 
+<style>
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+</style>
+
 
 ## MedVec: ClinicalBERT-Powered Vector Diagnosis Recommender
 
