@@ -4,8 +4,6 @@ title: Projects
 permalink: /medVec/
 ---
 
-<div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.6;">
-
 
 ## MedVec: ClinicalBERT-Powered Vector Diagnosis Recommender
 
@@ -50,6 +48,4 @@ Describes the top 1/3/5 most similar method to determining a potential accuracy
 Explain where this may create value, how it can't replace but rather guide human diagnosis, where it could be realistically applied
 Also discuss methods that may improve the results of this sort of comparison
 
-
-</div>
 
