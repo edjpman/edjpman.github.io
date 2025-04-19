@@ -55,6 +55,12 @@ Go into some of the technical details behind BERT and how this text becomes a se
 Also discuss some of the math/theory behind the sentence embedding in particular
 
 
+Test of latex in MD file
+
+$$
+y = \beta_0 + \beta_1 x + \varepsilon
+$$
+
 
 #### Vector Behaviors
 
