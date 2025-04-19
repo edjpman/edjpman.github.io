@@ -13,6 +13,13 @@ permalink: /medVec/
 </style>
 
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
 ## MedVec: ClinicalBERT-Powered Vector Diagnosis Recommender
 
 
@@ -26,7 +33,7 @@ If you had two minutes to read: What it does and what problem it solves, what is
 
 Includes the description, link to download, and considerations/caveats (how to improve performance, what may cause issues, queries to explore)
 
-
+{% raw %}
 ```python
 
 from datasets import load_dataset
