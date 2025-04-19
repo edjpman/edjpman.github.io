@@ -3,6 +3,12 @@ logo: /assets/img/IMG_5486.jpg
 description: Data Enthusiast - Mountain Athlete
 theme: jekyll-theme-minimal
 
+#To render code correctly
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
+
 #For adding new links to site
 navigation:
   - title: Home
