@@ -31,7 +31,7 @@ If you had two minutes to read: What it does and what problem it solves, what is
 
 Includes the description, link to download, and considerations/caveats (how to improve performance, what may cause issues, queries to explore)
 
-{% raw %}
+
 ```python
 
 from datasets import load_dataset
