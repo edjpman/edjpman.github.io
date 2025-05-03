@@ -69,23 +69,23 @@ df_mayo = pd.DataFrame(mayo_ds['train'])
 
 # Testing Latex
 
-### Math Block
-
-```math
-f(x) = \int_{-\infty}^\infty
-    \hat f(\xi)\,e^{2 \pi i \xi x}
-    \,d\xi
-```
-
 ### Inline
 
 $E = mc^2$
 
-## Display
+$\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}$
+
+### Display
 
 $$
 \int_0^\infty e^{-x^2} \, dx = \frac{\sqrt{\pi}}{2}
 $$
+
+
+\[
+\int_0^\infty e^{-x^2} \, dx = \frac{\sqrt{\pi}}{2}
+\]
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
@@ -94,7 +94,7 @@ $$
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$']],
-      displayMath: [['$$','$$']],
+      displayMath: [['\\[','\\]'],['$$','$$']],
       processEscapes: true
     }
   });
