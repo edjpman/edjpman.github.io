@@ -36,6 +36,10 @@ pre code {
   border-left: 4px solid #007acc;
   overflow-x: auto;
 }
+
+pre code .string {
+  color: #d14; 
+}
 </style>
 
 
