@@ -28,7 +28,19 @@ If you had two minutes to read: What it does and what problem it solves, what is
 Includes the description, link to download, and considerations/caveats (how to improve performance, what may cause issues, queries to explore)
 
 
-~~~python
+<style>
+pre code {
+  background-color: #f4f4f4;
+  padding: 1em;
+  display: block;
+  border-left: 4px solid #007acc;
+  overflow-x: auto;
+}
+</style>
+
+
+
+```python
 
 from datasets import load_dataset
 import pandas as pd
@@ -43,43 +55,5 @@ df_gretel = pd.DataFrame(gretel_ds['train'])
 df_mayo = pd.DataFrame(mayo_ds['train'])
 
 
-~~~
-
-
-
-
-#### Modeling Approach
-
-
-Describes the high-level approach taken with BERT 
-Go into some of the technical details behind BERT and how this text becomes a sentence embedding
-Also discuss some of the math/theory behind the sentence embedding in particular
-
-
-Test of latex in MD file
-
-$$
-y = \beta_0 + \beta_1 x + \varepsilon
-$$
-
-
-#### Vector Behaviors
-
-Discuss the dimensionality reduction method used to assess the data
-Give and example input, show the nearest neighbors, and describe the nuance of what that means from the disease data and modeling technique in general
-
-
-
-#### Diagnotic Potential
-
-Describes the top 1/3/5 most similar method to determining a potential accuracy 
-
-
-
-
-#### Future Considerations
-
-Explain where this may create value, how it can't replace but rather guide human diagnosis, where it could be realistically applied
-Also discuss methods that may improve the results of this sort of comparison
-
+```
 
