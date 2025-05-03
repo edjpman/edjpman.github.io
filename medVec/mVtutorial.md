@@ -7,6 +7,7 @@ permalink: /medVec/
 
 <head>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-0dz2VvleUq65lUnDeOKxuvcZVRipCrL+6fK7DJQzE2G/5uWc6tS9kbx0OFT3ld86KnKH3HQW25Ds3o7t0V/Qq6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 
