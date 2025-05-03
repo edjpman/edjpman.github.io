@@ -6,6 +6,9 @@ theme: jekyll-theme-minimal
 #To render code correctly
 markdown: kramdown
 
+kramdown:
+  syntax_highlighter: rouge
+
 #For adding new links to site
 navigation:
   - title: Home
