@@ -1,12 +1,13 @@
 title: Ethan Parks
 logo: /assets/img/IMG_5486.jpg
 description: Data Enthusiast - Mountain Athlete
-theme: jekyll-theme-minimal
+remote_theme: mmistakes/minimal-mistakes
 
 #To render code correctly
 markdown: kramdown
 
 kramdown:
+  input: GFM
   syntax_highlighter: rouge
 
 #For adding new links to site
