@@ -68,7 +68,9 @@ df_mayo = pd.DataFrame(mayo_ds['train'])
 ```
 
 
-### Testing Latex
+# Testing Latex
+
+### Math Block
 
 ```math
 f(x) = \int_{-\infty}^\infty
@@ -76,7 +78,28 @@ f(x) = \int_{-\infty}^\infty
     \,d\xi
 ```
 
+### Inline
+
+$E = mc^2$
+
+## Display
+
+$$
+\int_0^\infty e^{-x^2} \, dx = \frac{\sqrt{\pi}}{2}
+$$
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" integrity="sha512-LQNxIMR5rXvG2Q8N0NOirqT0p8XEmj0MagVjrOx0Vbg9TUpW+nvz2DmH16u1yJaoP4w1DHn+U4K2G+3CuY/HjKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" integrity="sha512-43Wxk2/wrJ75zDP4nQuZ4rula0i0Q2gMFX9Y2YmsDDPMnk6zV+DYx0MGoHuw==/Iu9r+XCQ+pg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
 
