@@ -44,6 +44,9 @@ In 2018 BERT (Bidirectional Encoder Representations from Transformers) (cite) wa
 
 ***bert image here***
 
+![Alt text](assets/img/Screen Shot 2025-05-04 at 6.28.09 PM.png)
+
+
 
 The following describes the process of generating BERT embeddings in the simplest manner possible. A full walkthrough with mathematical details will be provided in the future to a linked page:
 
@@ -51,6 +54,8 @@ Before diving into some of the details, the architecture of the encoder side of 
 
 
 ***bert image detailed here***
+
+![Alt text](assets/img/Screen Shot 2025-05-04 at 3.54.04 PM.png)
 
 
 Additional description here....
