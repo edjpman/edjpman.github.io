@@ -44,7 +44,7 @@ In 2018 BERT (Bidirectional Encoder Representations from Transformers) (cite) wa
 
 ***bert image here***
 
-![Alt text](assets/img/Screen Shot 2025-05-04 at 6.28.09 PM.png)
+![Alt text](assets/img/basic-bert-arch.png)
 
 
 
@@ -55,7 +55,7 @@ Before diving into some of the details, the architecture of the encoder side of 
 
 ***bert image detailed here***
 
-![Alt text](assets/img/Screen Shot 2025-05-04 at 3.54.04 PM.png)
+![Alt text](assets/img/detailed-bert-arch.png)
 
 
 Additional description here....
