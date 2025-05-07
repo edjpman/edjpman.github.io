@@ -58,7 +58,67 @@ Before diving into some of the details, the architecture of the encoder side of 
 ![Alt text](assets/img/detailed-bert-arch.png)
 
 
-Additional description here....
+### Pretraining:
+
+
+#### Initial Embeddings: 
+
+The text inputs are transformed into three separate embeddings that are finally summed together to be passed through the encoder. The first layer is of WordPiece tokens that break words into separate tokens, and even smaller chunks if the word does not exist. Finally a tag of [CLS] is added at the beginning of the body of text with a [SEP] tag between sentences to denote breaks.
+
+To perform the tokenization words are compared with a vocabulary lookup table to note if a word or symbol exists. In BERT this comes to approximately 30,000 words (cite paper). As an example let's use the sentence “The apple is cold. It tasted good.” The would first be broken down into a list of [[CLS] , “The”, “apple”, “is”, “cold” ,“.”, [SEP], “It”, “tast”, “##ed”, “good”, “”. ]. Let assume that for the sake of the example the text chunk “##ed” did not exist in our vocabulary lookup table. The text would then be further split until a match is found; in our case [“##ed”] → [“##e”, “##d”]. 
+
+The other two layers that are part of the final input vector are the positional and segment embeddings. The positional embedding simply highlights the location of the token in the sequence of text (similar to an index), while the segment embedding denotes the location of the sentence within a sequence of text. All three of these embedding vectors are eventually made into one through an element wise sum. To illustrate please see the diagram below.
+
+
+
+[Embedding image below here]
+
+
+#### Multihead Attention: 
+
+The inputs are then passed through the attention heads where the actual context is learned. The importance of this process can be exemplified by reusing the sentence in the beginning “The patient received the treatment and discharge paperwork and took it home to review.” To a human it may seem obvious that “it” in the sentence is referring to the “discharge paperwork” and not the actual treatment itself. However, to a computer this may not be so obvious. This brings forth the purpose of the attention heads, which is to place “attention” in various aspects of the sentence to which relationships and contextual nuance can be modeled.
+
+The basic functionality of the attention heads are as follows. Let's assume a sentence of “The doctor prescribed the medication.” An attention head evaluates a sequence of tokens X1, X2, …., Xn where each Xi is the embedding vector for token i. For a given focus token at position f, the attention head will compute how much “attention” should be placed upon each previous token in the sequence i <= f.
+
+[attention head chart of sentence]
+“The doctor prescribed the medication.”
+
+
+During this process the model also has access to the current input along with all prior inputs. For instance when focusing on “medication” the attention head considers the focus token in relation to all previous tokens. That is “The”, “doctor”, “prescribed”, and “the”. The corresponding attention computation can be thought of as the weighted sum of all the token embeddings prior and up to the focus token:
+
+$$
+\mathbf{A}_f = \sum_{i=1}^f \alpha_{fi} \mathbf{X}_i
+$$
+
+The notation afi is the scalar attention weight for token i when the focus token is f, and all the weights sum to 1. 
+
+This is completed through the dot product between the current focus vector Xf and each input vector Xi. 
+
+$$
+\text{score}(\mathbf{X}_f, \mathbf{X}_i) = \mathbf{X}_f^\top \mathbf{X}_i
+$$
+
+The raw scores are then normalized through a softmax function:
+
+$$
+\alpha_{fi} = \text{softmax}(\text{score}(\mathbf{X}_f, \mathbf{X}_i)) = \frac{\exp(\mathbf{X}_f^\top \mathbf{X}_i)}{\sum_{j \leq f} \exp(\mathbf{X}_f^\top \mathbf{X}_j)}
+$$
+
+
+Using the word “medication” in our sentence as an example we would compute:
+
+$$
+\mathbf{X}_5^\top \mathbf{X}_1, \quad \mathbf{X}_5^\top \mathbf{X}_2, \quad \mathbf{X}_5^\top \mathbf{X}_3, \quad \mathbf{X}_5^\top \mathbf{X}_4, \quad \mathbf{X}_5^\top \mathbf{X}_5
+$$
+
+
+These scores are then passed through the softmax function to produce the attention weights part of the final attention adjusted embedding vector. This vector is of the same dimensions as the input vector.  
+
+$$
+\mathbf{A}_f = \sum_{i=1}^f \alpha_{fi} \mathbf{X}_i
+$$
+
+This describes just a single attention head in the process. BERT however includes multiple attention heads in the same layer to model different relational aspects of the input text. For additional mathematical details please reference this [paper](https://people.tamu.edu/~sji/classes/attn.pdf). 
 
 
 ## Are Medical Professionals the Original BERT?
