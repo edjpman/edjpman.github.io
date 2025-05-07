@@ -82,7 +82,7 @@ The other two layers that are part of the final input vector are the positional 
 
 The inputs are then passed through the attention heads where the actual context is learned. The importance of this process can be exemplified by reusing the sentence in the beginning “The patient received the treatment and discharge paperwork and took it home to review.” To a human it may seem obvious that “it” in the sentence is referring to the “discharge paperwork” and not the actual treatment itself. However, to a computer this may not be so obvious. This brings forth the purpose of the attention heads, which is to place “attention” in various aspects of the sentence to which relationships and contextual nuance can be modeled.
 
-The basic functionality of the attention heads are as follows. Let's assume a sentence of “The doctor prescribed the medication.” An attention head evaluates a sequence of tokens X1, X2, …., Xn where each Xi is the embedding vector for token i. For a given focus token at position f, the attention head will compute how much “attention” should be placed upon each previous token in the sequence i <= f.
+The basic functionality of the attention heads are as follows. Let's assume a sentence of “The doctor prescribed the medication.” An attention head evaluates a sequence of tokens $\mathbf{X}_1, \mathbf{X}_2, \dots, \mathbf{X}_n$ where each $\mathbf{X}_i$ is the embedding vector for token $i$. For a given focus token at position $f$, the attention head will compute how much “attention” should be placed upon each previous token in the sequence $i \leq f$.
 
 [attention head chart of sentence]
 “The doctor prescribed the medication.”
@@ -94,9 +94,9 @@ $$
 \mathbf{A}_f = \sum_{i=1}^f \alpha_{fi} \mathbf{X}_i
 $$
 
-The notation afi is the scalar attention weight for token i when the focus token is f, and all the weights sum to 1. 
+The notation $\alpha_{fi}$ is the scalar attention weight for token $i$ when the focus token is $f$, and all the weights sum to 1. 
 
-This is completed through the dot product between the current focus vector Xf and each input vector Xi. 
+This is completed through the dot product between the current focus vector $\mathbf{X}_f$ and each input vector $\mathbf{X}_i$. 
 
 $$
 \text{score}(\mathbf{X}_f, \mathbf{X}_i) = \mathbf{X}_f^\top \mathbf{X}_i
