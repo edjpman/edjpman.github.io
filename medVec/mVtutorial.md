@@ -33,17 +33,17 @@ Since the existence of medicine, medical professional diagnostic tasks have been
 
 From a purely language based lense, encoder architectures coupled with classification algorithms act as a powerful tool in replicating the process currently performed by medical professionals. Encoders trained on a rich medical corpus can provide contextual nuance that make it possible for classifying diagnoses at the level of practitioners from linguistic features only. 
 
-Results of the modeling run reached an accuracy score of XX%, recall of XX%, precision of XX%, and F1 score of XX%. Future considerations of this library will include unsupervised techniques for evaluation and classification, additional tools for prospective medical professionals to gain AI literacy in their field, and potentially a performance evaluation in classification between medVec and medical student subjects. 
+Results of the modeling run reached an accuracy score of XX%, recall of XX%, precision of XX%, and F1 score of XX%. While these results are replicable between the tuning and testing set, there are concerns for overfitting given a dataset of only ~1,000. Therefore, a significantly larger dataset is required to observe the true strength of BERT. Future considerations of this library will include unsupervised techniques for evaluation and classification, additional tools for prospective medical professionals to gain AI literacy in their field, and potentially a performance evaluation in classification between medVec and medical student subjects. 
 
 
 
 
 ## Power of Encoders
 
-Despite seeming second nature to most, human language is infinitely complex in its use, rule sets, and presentation. In each domain language can have vastly different meanings and thus requires a way to differentiate. For example, in the medical field the word “discharge” may have two completely opposite meanings yet be used frequently; “The patient had a green nasal discharge” as in an anatomical descriptor and “The patient received the treatment and discharge paperwork and took it home to review” as is an organizational processing step.  
+Despite seeming second nature to most, human language is infinitely complex in its use, rule sets, and presentation. In each domain language can have vastly different meanings and thus requires a way to differentiate. For example, in the medical field the word “discharge” may have two completely opposite meanings yet be used frequently; “The patient had a green nasal discharge” as in a bodily function descriptor and “The patient received the treatment and discharge paperwork and took it home to review” as is an organizational processing step.  
 
 
-In 2018 [BERT](https://arxiv.org/pdf/1810.04805) (Bidirectional Encoder Representations from Transformers) (cite) was developed as a method for quantitatively distinguishing these features. The general architecture consists of a series of steps to take text as an input and generate a vector of numerical features as an output that are in essence representing its context.
+In 2018 [BERT](https://arxiv.org/pdf/1810.04805) (Bidirectional Encoder Representations from Transformers) (Devlin et al., 2019) was developed as a method for quantitatively distinguishing these features. The general architecture consists of a series of steps to take text as an input and generate a vector of numerical features as an output that are in essence representing its context.
 
 
 <img src="/assets/img/basic-bert-arch.png" class="centered-image">
@@ -60,21 +60,22 @@ Before diving into some of the details, the architecture of the encoder side of 
 ### Pretraining:
 
 
-To train a BERT model on a corpus of text, the original [authors](https://arxiv.org/pdf/1810.04805) proposed two key methods. The first method called “Masked Language Modeling” describes a process of hiding a random 15% of the tokenized words to later be predicted, allowing BERT to learn word relationships. The second method, “Next Sentence Description”, highlights a process of pairing sentences together with 50% of pairs being actual consecutive sentences while the other 50% are randomly generated from the different parts of the corpus, allowing BERT to learn sentence relationships (cite book). 
+To train a BERT model on a corpus of text, the original [authors](https://arxiv.org/pdf/1810.04805) proposed two key methods. The first method called “Masked Language Modeling” describes a process of hiding a random 15% of the tokenized words to later be predicted, allowing BERT to learn word relationships (Devlin et al., 2019). The second method, “Next Sentence Description”, highlights a process of pairing sentences together with 50% of pairs being actual consecutive sentences while the other 50% are randomly generated from the different parts of the corpus, allowing BERT to learn sentence relationships (Jurafsky & Martin, 2025). 
 
 
 #### Initial Embeddings: 
 
 The text inputs are transformed into three separate embeddings that are finally summed together to be passed through the encoder. The first layer is of WordPiece tokens that break words into separate tokens, and even smaller chunks if the word does not exist. Finally a tag of [CLS] is added at the beginning of the body of text with a [SEP] tag between sentences to denote breaks.
 
-To perform the tokenization words are compared with a vocabulary lookup table to note if a word or symbol exists. In BERT this comes to approximately 30,000 words (cite Devlin paper). As an example let's use the sentence “The apple is cold. It tasted good.” The would first be broken down into a list of [[CLS] , “The”, “apple”, “is”, “cold” ,“.”, [SEP], “It”, “tast”, “##ed”, “good”, “”. ]. Let assume that for the sake of the example the text chunk “##ed” did not exist in our vocabulary lookup table. The text would then be further split until a match is found; in our case [“##ed”] → [“##e”, “##d”].(cite hugging face) 
+To perform the tokenization words are compared with a vocabulary lookup table to note if a word or symbol exists. In BERT this comes to approximately 30,000 words (cite Devlin paper). As an example let's use the sentence “The apple is cold. It tasted good.” The would first be broken down into a list of [[CLS] , “The”, “apple”, “is”, “cold” ,“.”, [SEP], “It”, “tast”, “##ed”, “good”, “”. ]. Let assume that for the sake of the example the text chunk “##ed” did not exist in our vocabulary lookup table. The text would then be further split until a match is found; in our case [“##ed”] → [“##e”, “##d”] (Hugging Face, n.d.).
 
-The other two layers that are part of the final input vector are the positional and segment embeddings. The positional embedding simply highlights the location of the token in the sequence of text (similar to an index), while the segment embedding denotes the location of the sentence within a sequence of text. All three of these embedding vectors are eventually made into one through an element wise sum. To illustrate please see the diagram below. (cite devlin paper)
+The other two layers that are part of the final input vector are the positional and segment embeddings. The positional embedding simply highlights the location of the token in the sequence of text (similar to an index), while the segment embedding denotes the location of the sentence within a sequence of text. All three of these embedding vectors are eventually made into one through an element wise sum. To illustrate please see the diagram below. (Devlin et al., 2019)
 
 ***add devlin diagram here***
 
-
 [Embedding image below here]
+
+<small>Figure 2. BERT input representation. Reprinted from BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding by Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019), arXiv. [](https://arxiv.org/abs/1810.04805)</small>
 
 
 #### Multihead Attention: 
@@ -86,8 +87,10 @@ The basic functionality of the attention heads are as follows. Let's assume a se
 [attention head chart of sentence]
 “The doctor prescribed the medication.”
 
+<small>Figure 3. Information flow in causal self-attention. Reprinted from Speech and language processing: An introduction to natural language processing, computational linguistics, and speech recognition with language models (3rd ed., Draft of January 12, 2025), by D. Jurafsky & J. H. Martin, 2025, [](https://web.stanford.edu/~jurafsky/slp3)</small>
 
-During this process the model also has access to the current input along with all prior inputs. For instance when focusing on “medication” the attention head considers the focus token in relation to all previous tokens. That is “The”, “doctor”, “prescribed”, and “the”. The corresponding attention computation can be thought of as the weighted sum of all the token embeddings prior and up to the focus token: (cite textbook)
+
+During this process the model also has access to the current input along with all prior inputs. For instance when focusing on “medication” the attention head considers the focus token in relation to all previous tokens. That is “The”, “doctor”, “prescribed”, and “the”. The corresponding attention computation can be thought of as the weighted sum of all the token embeddings prior and up to the focus token (Jurafsky & Martin, 2025): 
 
 $$
 \mathbf{A}_f = \sum_{i=1}^f \alpha_{fi} \mathbf{X}_i
@@ -121,22 +124,22 @@ $$
 \mathbf{A}_f = \sum_{i=1}^f \alpha_{fi} \mathbf{X}_i
 $$
 
-This describes just a single attention head in the process. BERT however includes multiple attention heads in the same layer to model different relational aspects of the input text. For additional mathematical details please reference this [paper](https://people.tamu.edu/~sji/classes/attn.pdf). (cite this paper) 
+This describes just a single attention head in the process. BERT however includes multiple attention heads in the same layer to model different relational aspects of the input text. For additional mathematical details please reference this [paper](https://people.tamu.edu/~sji/classes/attn.pdf) (Ji, Xie, & Gao, 2019).
 
 
 #### Layer Norm: 
 
-After the inputs have passed through the multihead attention layer they are normalized through a z-score like method to improve their performance on deep learning based tasks as the values within a particular range support gradient based training. As with each layer of the encoder block, the normalization is applied to an embedding of a single token keeping the dimensionality the same, while adjusting for mean 0 and a standard deviation of 1. After the feedforward network portion, there is one final normalization layer before the final embedding is produced (cite devlin). 
+After the inputs have passed through the multihead attention layer they are normalized through a z-score like method to improve their performance on deep learning based tasks as the values within a particular range support gradient based training. As with each layer of the encoder block, the normalization is applied to an embedding of a single token keeping the dimensionality the same, while adjusting for mean 0 and a standard deviation of 1. After the feedforward network portion, there is one final normalization layer before the final embedding is produced (Devlin et al., 2019). 
 
 
 #### Feed Forward: 
 
-The last step of the encoder block (aside from a last normalization) is a 2-layer feedforward multi-layer perceptron neural network that maps the input embedding to a new vector that captures deeper and more abstract linguistic features. Across the different encoder blocks these networks learn different features such as parts of speech, grammatical roles, relationships of linguistic features, task specific functions, among others (cite devlin).
+The last step of the encoder block (aside from a last normalization) is a 2-layer feedforward multi-layer perceptron neural network that maps the input embedding to a new vector that captures deeper and more abstract linguistic features. Across the different encoder blocks these networks learn different features such as parts of speech, grammatical roles, relationships of linguistic features, task specific functions, among others (Devlin et al., 2019).
 
 
 #### Inference BERT:
 
-When using a pre-train version of BERT, the same architecture (tokenization, multi-head attention, normalization layers, feedforward networks) is used to produce deep contextual embeddings of the input text. The key difference with the inference step is that all input text is initialized with the token embeddings from the pre-trained model, allowing BERT to focus on optimizing the contextual representation of tokens based on the specific input, without needing to learn the embeddings again from scratch (cite devlin).
+When using a pre-train version of BERT, the same architecture (tokenization, multi-head attention, normalization layers, feedforward networks) is used to produce deep contextual embeddings of the input text. The key difference with the inference step is that all input text is initialized with the token embeddings from the pre-trained model, allowing BERT to focus on optimizing the contextual representation of tokens based on the specific input, without needing to learn the embeddings again from scratch (Devlin et al., 2019).
 
 
 
@@ -151,7 +154,7 @@ As a result we cannot realistically expect human medical professionals to be abl
 
 ## BERT Based Replication
 
-To help show that medical professional efforts are more impactful from a holistic and relational standpoint, I implement a supervised classification scenario on patient symptom descriptions that are contextually sparse. This follows known uses for the BERT architecture proposed in (cite devlin). The descriptions are transformed into embeddings utilizing a custom pre-trained BERT model named ClinicalBERT trained on over 3 million patient electronic health records. It's important to note that ClinicalBERT is technically a DistilBERT model which is a reduced form of BERT with half the amount of transformer encoding blocks but achieves nearly similar accuracy. For details please refer to the original DistilBERT paper (cite dbert paper) as details will be provided in a different page in the future. After the embeddings are created, a simple feed-forward multi-layer perceptron neural network is trained on the embeddings for further fine tuning and classification testing.
+To help show that medical professional efforts are more impactful from a holistic and relational standpoint, I implement a supervised classification scenario on patient symptom descriptions that are contextually sparse. This follows known uses for the BERT architecture proposed in (Devlin et al., 2019). The descriptions are transformed into embeddings utilizing a custom pre-trained BERT model named ClinicalBERT trained on over 3 million patient electronic health records. It's important to note that ClinicalBERT is technically a DistilBERT model which is a reduced form of BERT with half the amount of transformer encoding blocks but achieves nearly similar accuracy. For details please refer to the original DistilBERT [paper](https://arxiv.org/pdf/1910.01108) (Sanh et al., 2020) as details will be provided in a different page in the future. After the embeddings are created, a simple feed-forward multi-layer perceptron neural network is trained on the embeddings for further fine tuning and classification testing.
 
 
 ### Dataset: 
@@ -197,7 +200,7 @@ patdf = dataproc.feat_map(dataset=patdf,label_map=labels,col='label')
 
 ### Data Transformations: 
 
-
+The custom BERT class is instantiate splitting the text and labels into separate datasets for training, tuning, and testing (a default of 70%, 20%, and 10% respectively). The data is then split into tokens that meet the requirements for the specified model (i.e. ClinicalBERT) returning of pooled variant of the last hidden state as the sentence embedding. The final BERTdataset class wraps the embeddings into a PyTorch compatible dataset for efficient loading and batching during training. 
 
 ```python
 
@@ -226,7 +229,7 @@ test_data  = BERTdataset(embd_splits['test']['embeddings'],  embd_splits['test']
 
 ### Classification Head Architecture: 
 
-
+The dataset objects are subsequently iterated over using the PyTorch DataLoader class to create mini batches of size n along with other functionalities such as shuffling to avoid learning order biases. The classifier head is then instantiated with the desired hyperparameters along with instantiating the sftTune class to specify the optimizer and loss function. It's important to note that the input dimensions must by 768 in this case to match the embedding vector, along with the number of classes being 22 corresponding to those identified in the initial labelling.
 
 ```python
 
@@ -246,6 +249,7 @@ loss_fn = tuner.xc_entropy()
 
 ### Train-Tune-Test: 
 
+The training and testing classes are instantiated to run the train loop over a set number of epochs. The accuracy metrics are then performed against a test loop leveraging the dev data to tune the hyperparameters that maximize performance. The resulting set of parameters are then modified on the classifier head with a new training run executed, followed by a final test loop on the test set of data to evaluate the performance.
 
 ```python
 
@@ -269,67 +273,44 @@ tester.test_loop(test_loader, classification_head, loss_fn)
 
 After creating the patient embeddings and performing the training and tuning of the classification head, the following resulted in the best performance. The model was specifically evaluated on pure accuracy, precision, recall, and F1 to provide a more holistic lens to performance: 
 
-Network Architecture: There were virtually no gains to increasing the number of layers within the network architecture, and many times decreased the classification performance of the model. This can potentially be attributed to the level of abstraction that is achieved during the embedding process. 
+#### Network Architecture: 
 
-Training Epochs: A number of training epochs 50 and above were necessary as the loss despite taking longer to converge at a minimum consistently decreased.
+There were virtually no gains to increasing the number of layers within the network architecture, and many times decreased the classification performance of the model. This can potentially be attributed to the level of abstraction that is achieved during the embedding process. 
 
-Optimizer: Per the original transformers [paper](https://arxiv.org/pdf/1706.03762) (cite), the Adam optimizer is standard by which the encoder-decoder is trained with and has benefits given its weight decay handling. While testing various optimization techniques the Adam based optimizers produced the most promising results. The AdamW optimizer was identified as the best performing with most other options producing substantially worse performance. 
+#### Training Epochs: 
 
-Batch Sizes: The batch size of one ended up providing the best forming results. 
+A number of training epochs 50 and above were necessary as the loss despite taking longer to converge at a minimum consistently decreased.
 
+#### Optimizer: 
 
+Per the original transformers [paper](https://arxiv.org/pdf/1706.03762) (Vaswani et al., 2023), the Adam optimizer is standard by which the encoder-decoder is trained with and has benefits given its weight decay handling. While testing various optimization techniques the Adam based optimizers produced the most promising results. The AdamW optimizer was identified as the best performing with most other options producing substantially worse performance. 
 
-## Future Considerations
+#### Batch Sizes: 
 
-
-Text here
-
-
-
-
-
-## Test Code
-
-Includes the description, link to download, and considerations/caveats (how to improve performance, what may cause issues, queries to explore)
-
-
-<style>
-pre code {
-  background-color: #f4f4f4;
-  padding: 1em;
-  display: block;
-  border-left: 4px solid #007acc;
-  overflow-x: auto;
-}
-
-pre code .string {
-  color: #d14; 
-}
-</style>
-
-
-
-```python
-
-from datasets import load_dataset
-import pandas as pd
-
-
-gretel_ds = load_dataset("gretelai/symptom_to_diagnosis")
-
-mayo_ds = load_dataset("celikmus/mayo_clinic_symptoms_and_diseases_v1")
-
-
-df_gretel = pd.DataFrame(gretel_ds['train'])
-df_mayo = pd.DataFrame(mayo_ds['train'])
-
-
-```
+In the case of tuning, batch sizes near one appear to produce the best result. The additional detail introduced through the smaller batch size appears to help the model reach a more optimum minima. A cause for concern is that given the training dataset is relatively small the neural net may be too complex for the case and thus require a less complex model due to overfitting concerns. 
 
 
 ## Citations
 
-Paper citations, textbook, and hugging face data/models go here
+
+Celik, M. (2023). Mayo Clinic Symptoms and Diseases v1 [Dataset]. Hugging Face. [](https://huggingface.co/datasets/celikmus/mayo_clinic_symptoms_and_diseases_v1)
+
+Daniel Jurafsky and James H. Martin. 2025. Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition with Language Models, 3rd edition. Online manuscript released January 12, 2025. [](https://web.stanford.edu/~jurafsky/slp3)
+
+Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of deep bidirectional transformers for language understanding. arXiv. [](https://arxiv.org/abs/1810.04805)
+
+Gretel.ai. (2023). Symptom to Diagnosis [Dataset]. Hugging Face. [](https://huggingface.co/datasets/gretelai/symptom_to_diagnosis)
+
+Hugging Face. (n.d.). WordPiece tokenization. In Hugging Face Course. Retrieved May 7, 2025, from [](https://huggingface.co/learn/llm-course/en/chapter6/6)
+
+Ji, S., Xie, Y., & Gao, H. (2019). A mathematical view of attention models in deep learning. Texas A&M University. [](https://people.tamu.edu/~sji/classes/attn.pdf)
+
+Medical AI. (2025). ClinicalBERT [Model]. Hugging Face. [](https://huggingface.co/medicalai/ClinicalBERT)
+
+Sanh, V., Debut, L., Chaumond, J., & Wolf, T. (2020). DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. arXiv. [](https://arxiv.org/abs/1910.01108)
+
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2023). Attention is all you need. arXiv. [](https://arxiv.org/abs/1706.03762)
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
