@@ -46,7 +46,7 @@ Despite seeming second nature to most, human language is infinitely complex in i
 In 2018 [BERT](https://arxiv.org/pdf/1810.04805) (Bidirectional Encoder Representations from Transformers) (cite) was developed as a method for quantitatively distinguishing these features. The general architecture consists of a series of steps to take text as an input and generate a vector of numerical features as an output that are in essence representing its context.
 
 
-<img src="/assets/img/basic-bert-arch.png">
+<img src="/assets/img/basic-bert-arch.png" class="centered-image">
 
 
 The following describes the process of generating BERT embeddings in the simplest manner possible. A full walkthrough with mathematical details will be provided in the future to multiple linked pages:
@@ -54,7 +54,7 @@ The following describes the process of generating BERT embeddings in the simples
 Before diving into some of the details, the architecture of the encoder side of the transformer proposed in the famous [paper](https://arxiv.org/pdf/1706.03762) “Attention is All You Need” (cite) will act as a guide to understand how BERT works.
 
 
-<img src="/assets/img/detailed-bert-arch.png">
+<img src="/assets/img/detailed-bert-arch.png" class="centered-image">
 
 
 ### Pretraining:
