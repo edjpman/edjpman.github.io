@@ -16,6 +16,10 @@ permalink: /medVec/
     font-size: 18px;
     line-height: 1.6;
   }
+  .centered-image {
+    display: block;
+    margin: auto;
+  }
 </style>
 
 
