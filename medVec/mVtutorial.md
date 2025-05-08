@@ -232,9 +232,9 @@ The dataset objects are subsequently iterated over using the PyTorch DataLoader 
 
 ```python
 
-train_loader = DataLoader(train_data, batch_size=4, shuffle=True)
-dev_loader   = DataLoader(dev_data, batch_size=4, shuffle=False)
-test_loader  = DataLoader(test_data, batch_size=4, shuffle=False)
+train_loader = DataLoader(train_data, batch_size=1, shuffle=True)
+dev_loader   = DataLoader(dev_data, batch_size=1, shuffle=False)
+test_loader  = DataLoader(test_data, batch_size=1, shuffle=False)
 
 classification_head = cBertMCChead(input_dim=768, hidden_dim=256, dropout=0.3, num_layers=1, num_classes=22)
 tuner = sftTune(model=classification_head, learn_rate=1e-4)
@@ -246,31 +246,56 @@ loss_fn = tuner.xc_entropy()
 
 
 
-### Train-Tune-Test: 
+### Train-Tune: 
 
-The training and testing classes are instantiated to run the train loop over a set number of epochs. The accuracy metrics are then performed against a test loop leveraging the dev data to tune the hyperparameters that maximize performance. The resulting set of parameters are then modified on the classifier head with a new training run executed, followed by a final test loop on the test set of data to evaluate the performance.
+The training and testing classes are instantiated to run the train loop over a set number of epochs. A breaking mechanism was included so that if the model accuracy did not improve over a set number of epochs the training loop would stop and the best model be kept. The accuracy metrics in this cycle are evaluated against the dev dataset to tune the hyperparameters that maximize performance. The resulting set of parameters are then modified on the classifier head with a new train-tune cycle executed. Top tuning scores achieved greater than 87% accuracy, 88% precision, 87% recall, and 86% F1. 
 
 ```python
 
 trainer = cBERT_train()
+testing = Bert_test()
+
+top_model = None
+lowest_tune_ls = float('inf')
+no_improve = 0
+epoch_limit = 5
 
 for epoch in range(60):
     print(f"Epoch {epoch+1}")
     trainer.train_loop(train_loader, classification_head, loss_fn, optimizer, device='cpu')
+    tune_loss, *_ = testing.test_loop(dev_loader, classification_head, loss_fn)
 
-tuning = Bert_test()
-tuning.test_loop(dev_loader, classification_head, loss_fn)
+    if tune_loss < lowest_tune_ls:
+        lowest_tune_ls = tune_loss
+        top_model = copy.deepcopy(classification_head)
+        no_improve = 0
+        print('No improvement count reset!')
+    else:
+        no_improve += 1
+        print('No improvement detected!')
 
-tester = Bert_test()
-tester.test_loop(test_loader, classification_head, loss_fn)
+        if no_improve >= epoch_limit:
+            print('Epoch limit reached!')
+            break
 
 
 ```
 
+### Testing
 
-## Classification Head Tuning
+A final test loop is performed on the testing dataset to evaluate the generalizability of the model. Utilizing the best tuned version of the model the testing run achieves score of pproximately 80% accuracy, 80% precision, 80% recall, and 78% F1. As mentioned in the introduction, the limited size of the dataset and the complexity of the model lend to a concern for overfitting. A larger dataset and deeper evaluation methods are required for a greater understanding of the model capabilities. 
 
-After creating the patient embeddings and performing the training and tuning of the classification head, the following resulted in the best performance. The model was specifically evaluated on pure accuracy, precision, recall, and F1 to provide a more holistic lens to performance: 
+```python
+
+testing.test_loop(test_loader, top_model, loss_fn)
+
+```
+
+
+
+## Classification Head Tuning Considerations
+
+After creating the patient embeddings and performing the training and initial evaluation of the classification head, the following settings of the hyperparameters resulted in the best performance. The model was specifically evaluated on pure accuracy, precision, recall, and F1 to provide a more holistic lens to performance: 
 
 #### Network Architecture: 
 
