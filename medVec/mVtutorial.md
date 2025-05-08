@@ -140,7 +140,7 @@ After the inputs have passed through the multihead attention layer they are norm
 
 #### Feed Forward: 
 
-The last step of the encoder block (aside from a last normalization) is a 2-layer feedforward multi-layer perceptron neural network that maps the input embedding to a new vector that captures deeper and more abstract linguistic features. Across the different encoder blocks these networks learn different features such as parts of speech, grammatical roles, relationships of linguistic features, task specific functions, among others (Devlin et al., 2019). For more details on neural network architecture please reference this [overview](https://www.youtube.com/watch?v=A2RV4qOQQE0&t=615s).
+The last step of the encoder block (aside from a last normalization) is a 2-layer feedforward multi-layer perceptron neural network that maps the input embedding to a new vector that captures deeper and more abstract linguistic features. Across the different encoder blocks these networks learn different features such as parts of speech, grammatical roles, relationships of linguistic features, task specific functions, among others (Devlin et al., 2019). For more details on neural network architecture please reference this [overview](https://www.youtube.com/watch?v=A2RV4qOQQE0&t=0s).
 
 
 
