@@ -19,6 +19,8 @@ permalink: /medVec/
   .centered-image {
     display: block;
     margin: auto;
+    max-width: 100%;
+    height: auto
   }
 </style>
 
@@ -73,7 +75,7 @@ To perform the tokenization words are compared with a vocabulary lookup table to
 The other two layers that are part of the final input vector are the positional and segment embeddings. The positional embedding simply highlights the location of the token in the sequence of text (similar to an index), while the segment embedding denotes the location of the sentence within a sequence of text. All three of these embedding vectors are eventually made into one through an element wise sum. To illustrate please see the diagram below. (Devlin et al., 2019)
 
 
-<img src="/assets/img/input_embd.png" class="centered-image">
+<img src="/assets/img/input_embd.png" class="centered-image" style="max-width: 100%; height: auto;>
 
 <small>Figure 3. BERT input representation. Reprinted from BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding by Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019), arXiv, [Link](https://arxiv.org/abs/1810.04805)</small>
 
@@ -84,7 +86,7 @@ The inputs are then passed through the attention heads where the actual context 
 
 The basic functionality of the attention heads are as follows. Let's assume a sentence of “The doctor prescribed the medication.” An attention head evaluates a sequence of tokens $\mathbf{X}_1, \mathbf{X}_2, \dots, \mathbf{X}_n$ where each $\mathbf{X}_i$ is the embedding vector for token $i$. For a given focus token at position $f$, the attention head will compute how much “attention” should be placed upon each previous token in the sequence $i \leq f$.
 
-<img src="/assets/img/attn_head.png" class="centered-image">
+<img src="/assets/img/attn_head.png" class="centered-image" style="max-width: 100%; height: auto;>
 
 <small>Figure 4. Information flow in causal self-attention. Reprinted from Speech and language processing: An introduction to natural language processing, computational linguistics, and speech recognition with language models (3rd ed., Draft of January 12, 2025), by D. Jurafsky & J. H. Martin, 2025, [Link](https://web.stanford.edu/~jurafsky/slp3)</small>
 
