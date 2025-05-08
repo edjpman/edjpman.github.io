@@ -51,11 +51,12 @@ In 2018 [BERT](https://arxiv.org/pdf/1810.04805) (Bidirectional Encoder Represen
 
 The following describes the process of generating BERT embeddings in the simplest manner possible. A full walkthrough with mathematical details will be provided in the future to multiple linked pages:
 
-Before diving into some of the details, the architecture of the encoder side of the transformer proposed in the famous [paper](https://arxiv.org/pdf/1706.03762) “Attention is All You Need” (cite) will act as a guide to understand how BERT works.
+Before diving into some of the details, the architecture of the encoder side of the transformer proposed in the famous [paper](https://arxiv.org/pdf/1706.03762) “Attention is All You Need” (Vaswani et al., 2023) will act as a guide to understand how BERT works.
 
 
 <img src="/assets/img/detailed-bert-arch.png" class="centered-image">
 
+<small>The Transformer – model architecture. Reprinted from Attention is all you need, by A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, Ł. Kaiser, & I. Polosukhin, 2023, arXiv, [Link](https://arxiv.org/abs/1706.03762)</small>
 
 ### Pretraining:
 
@@ -71,11 +72,10 @@ To perform the tokenization words are compared with a vocabulary lookup table to
 
 The other two layers that are part of the final input vector are the positional and segment embeddings. The positional embedding simply highlights the location of the token in the sequence of text (similar to an index), while the segment embedding denotes the location of the sentence within a sequence of text. All three of these embedding vectors are eventually made into one through an element wise sum. To illustrate please see the diagram below. (Devlin et al., 2019)
 
-***add devlin diagram here***
 
-[Embedding image below here]
+<img src="/assets/img/input_embd.png" class="centered-image">
 
-<small>Figure 2. BERT input representation. Reprinted from BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding by Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019), arXiv. [](https://arxiv.org/abs/1810.04805)</small>
+<small>Figure 3. BERT input representation. Reprinted from BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding by Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019), arXiv, [Link](https://arxiv.org/abs/1810.04805)</small>
 
 
 #### Multihead Attention: 
@@ -84,10 +84,9 @@ The inputs are then passed through the attention heads where the actual context 
 
 The basic functionality of the attention heads are as follows. Let's assume a sentence of “The doctor prescribed the medication.” An attention head evaluates a sequence of tokens $\mathbf{X}_1, \mathbf{X}_2, \dots, \mathbf{X}_n$ where each $\mathbf{X}_i$ is the embedding vector for token $i$. For a given focus token at position $f$, the attention head will compute how much “attention” should be placed upon each previous token in the sequence $i \leq f$.
 
-[attention head chart of sentence]
-“The doctor prescribed the medication.”
+<img src="/assets/img/attn_head.png" class="centered-image">
 
-<small>Figure 3. Information flow in causal self-attention. Reprinted from Speech and language processing: An introduction to natural language processing, computational linguistics, and speech recognition with language models (3rd ed., Draft of January 12, 2025), by D. Jurafsky & J. H. Martin, 2025, [](https://web.stanford.edu/~jurafsky/slp3)</small>
+<small>Figure 4. Information flow in causal self-attention. Reprinted from Speech and language processing: An introduction to natural language processing, computational linguistics, and speech recognition with language models (3rd ed., Draft of January 12, 2025), by D. Jurafsky & J. H. Martin, 2025, [Link](https://web.stanford.edu/~jurafsky/slp3)</small>
 
 
 During this process the model also has access to the current input along with all prior inputs. For instance when focusing on “medication” the attention head considers the focus token in relation to all previous tokens. That is “The”, “doctor”, “prescribed”, and “the”. The corresponding attention computation can be thought of as the weighted sum of all the token embeddings prior and up to the focus token (Jurafsky & Martin, 2025): 
@@ -293,23 +292,23 @@ In the case of tuning, batch sizes near one appear to produce the best result. T
 ## Citations
 
 
-Celik, M. (2023). Mayo Clinic Symptoms and Diseases v1 [Dataset]. Hugging Face. [](https://huggingface.co/datasets/celikmus/mayo_clinic_symptoms_and_diseases_v1)
+Celik, M. (2023). Mayo Clinic Symptoms and Diseases v1 [Dataset]. Hugging Face. [Link](https://huggingface.co/datasets/celikmus/mayo_clinic_symptoms_and_diseases_v1)
 
-Daniel Jurafsky and James H. Martin. 2025. Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition with Language Models, 3rd edition. Online manuscript released January 12, 2025. [](https://web.stanford.edu/~jurafsky/slp3)
+Daniel Jurafsky and James H. Martin. 2025. Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition with Language Models, 3rd edition. Online manuscript released January 12, 2025. [Link](https://web.stanford.edu/~jurafsky/slp3)
 
-Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of deep bidirectional transformers for language understanding. arXiv. [](https://arxiv.org/abs/1810.04805)
+Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of deep bidirectional transformers for language understanding. arXiv. [Link](https://arxiv.org/abs/1810.04805)
 
-Gretel.ai. (2023). Symptom to Diagnosis [Dataset]. Hugging Face. [](https://huggingface.co/datasets/gretelai/symptom_to_diagnosis)
+Gretel.ai. (2023). Symptom to Diagnosis [Dataset]. Hugging Face. [Link](https://huggingface.co/datasets/gretelai/symptom_to_diagnosis)
 
-Hugging Face. (n.d.). WordPiece tokenization. In Hugging Face Course. Retrieved May 7, 2025, from [](https://huggingface.co/learn/llm-course/en/chapter6/6)
+Hugging Face. (n.d.). WordPiece tokenization. In Hugging Face Course. Retrieved May 7, 2025, from [Link](https://huggingface.co/learn/llm-course/en/chapter6/6)
 
-Ji, S., Xie, Y., & Gao, H. (2019). A mathematical view of attention models in deep learning. Texas A&M University. [](https://people.tamu.edu/~sji/classes/attn.pdf)
+Ji, S., Xie, Y., & Gao, H. (2019). A mathematical view of attention models in deep learning. Texas A&M University. [Link](https://people.tamu.edu/~sji/classes/attn.pdf)
 
-Medical AI. (2025). ClinicalBERT [Model]. Hugging Face. [](https://huggingface.co/medicalai/ClinicalBERT)
+Medical AI. (2025). ClinicalBERT [Model]. Hugging Face. [Link](https://huggingface.co/medicalai/ClinicalBERT)
 
-Sanh, V., Debut, L., Chaumond, J., & Wolf, T. (2020). DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. arXiv. [](https://arxiv.org/abs/1910.01108)
+Sanh, V., Debut, L., Chaumond, J., & Wolf, T. (2020). DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. arXiv. [Link](https://arxiv.org/abs/1910.01108)
 
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2023). Attention is all you need. arXiv. [](https://arxiv.org/abs/1706.03762)
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2023). Attention is all you need. arXiv. [Link](https://arxiv.org/abs/1706.03762)
 
 
 
