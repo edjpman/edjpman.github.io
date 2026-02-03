@@ -16,19 +16,56 @@ permalink: /medVec/
     font-size: 18px;
     line-height: 1.6;
   }
+
+  /* Constrain content width */
+  .page-content,
+  .container,
+  main,
+  article {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
   .centered-image {
     display: block;
     margin: auto;
     max-width: 100%;
     height: auto
   }
+
+  .project-links {
+    margin: 12px 0 28px 0;
+  }
+
+  .pill-link {
+    display: inline-block;
+    margin-right: 12px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    background-color: #f2f2f2;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+
+  .pill-link:hover {
+    background-color: #e6e6e6;
+    transform: translateY(-1px);
+  }
 </style>
 
 
 # MedVec: ClinicalBERT-Powered Vector Diagnosis Recommender
 
-[HOME](https://edjpman.github.io/)
-[GitHub Repo](https://github.com/edjpman/medVec)
+<div class="project-links">
+  <a href="https://edjpman.github.io/" class="pill-link">Home</a>
+  <a href="https://github.com/edjpman/medVec" class="pill-link">GitHub Repo</a>
+</div>
 
 ## TLDR - 2 minute summary
 

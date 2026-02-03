@@ -1,6 +1,6 @@
 title: Ethan Parks
 logo: /assets/img/IMG_5486.jpg
-description: Data Enthusiast - Mountain Athlete
+description: Applied ML & NLP · Data Science MS · Mountain Athlete
 theme: jekyll-theme-minimal
 
 #To render code correctly
@@ -16,3 +16,4 @@ navigation:
     url: /
   - title: Projects
     url: /medVec/
+    url: /geomTransformer/
