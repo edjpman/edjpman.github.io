@@ -11,22 +11,16 @@ permalink: /medVec/
 
 
 <style>
+  .wrapper {
+    max-width: 900px !important; 
+    margin: 0 auto !important;
+    padding: 40px 24px !important;
+  }
+  
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
     line-height: 1.6;
-  }
-
-  /* Constrain content width */
-  .page-content,
-  .container,
-  main,
-  article {
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 24px;
-    padding-right: 24px;
   }
 
   .centered-image {
@@ -57,6 +51,27 @@ permalink: /medVec/
     background-color: #e6e6e6;
     transform: translateY(-1px);
   }
+
+  .callout {
+    padding: 16px 20px;
+    margin: 24px 0;
+    border-left: 4px solid #0366d6; /* GitHub blue */
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #24292e;
+  }
+
+  .callout-title {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    color: #0366d6;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  
 </style>
 
 
