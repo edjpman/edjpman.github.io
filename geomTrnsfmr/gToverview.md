@@ -2,7 +2,7 @@
 ---
 layout: page
 title: Projects
-permalink: /geomTransformer/
+permalink: /geomTrnsfmr/
 ---
 
 
@@ -12,22 +12,16 @@ permalink: /geomTransformer/
 
 
 <style>
+  .wrapper {
+    max-width: 900px !important; 
+    margin: 0 auto !important;
+    padding: 40px 24px !important;
+  }
+
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
     line-height: 1.6;
-  }
-
-  /* Constrain content width */
-  .page-content,
-  .container,
-  main,
-  article {
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 24px;
-    padding-right: 24px;
   }
 
   .centered-image {
@@ -58,6 +52,27 @@ permalink: /geomTransformer/
     background-color: #e6e6e6;
     transform: translateY(-1px);
   }
+
+  .callout {
+    padding: 16px 20px;
+    margin: 24px 0;
+    border-left: 4px solid #0366d6; /* GitHub blue */
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #24292e;
+  }
+
+  .callout-title {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    color: #0366d6;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
 </style>
 
 
@@ -74,6 +89,11 @@ permalink: /geomTransformer/
 
 ***"Does language-model-style attention help on non-language sequences?"***
 
+<div class="callout">
+  <span class="callout-title">Note</span>
+  An expanded and updated version is currently in the works!
+</div>
+
 Modern NLP breakthroughs have excelled at capturing semantic relationships in sequences. This lightweight experiment was performed as a small concept test as to whether those same techniques can work on non-text ECG heartbeat readings. The core ideas can be summarized as follows:
 
 - Take a fixed-length window around each heartbeat
@@ -87,8 +107,6 @@ Modern NLP breakthroughs have excelled at capturing semantic relationships in se
 
 The final logistical regression performance shows how linearly separable sequential structure the transformer learned from the ECG data.
 
-
-**PLEASE NOTE: An expanded and updated version is currently in the works! Stay tuned for an updated overview.**
 
 ##### Modeling Architecture
 
@@ -190,7 +208,10 @@ Finally, recent papers have highlighted the ability of modifying a language mode
 
 #### Results 
 
-##### PLEASE NOTE: A more in-depth training process will occur in the updated version.
+<div class="callout">
+  <span class="callout-title">Note</span>
+  A more in-depth training process will occur in the updated version!
+</div>
 
 After a final complete training and tuning cycle the model identified general patterns of the ECG heartbeats moderately well achieving a mean F1, precision, and recall of 66.2%, 84.2%, and 61.3% respectively. A bootstrapped confidence interval was obtained for the F1 score of the lower and upper bounds at the 95% confidence level of 65.2% and 67.3%. Only a single training regime (shuffle) was performed for the model given the limited compute resources and the multiple hours required to complete a single shuffle. 
 
