@@ -5,82 +5,19 @@ permalink: /medVec/
 ---
 
 
-<head>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-</head>
 
+<link rel="stylesheet" href="{{ '/assets/css/mdstyle.css' | relative_url }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
 
-<style>
-  .wrapper {
-    max-width: 900px !important; 
-    margin: 0 auto !important;
-    padding: 40px 24px !important;
-  }
-  
-  body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    line-height: 1.6;
-  }
-
-  .centered-image {
-    display: block;
-    margin: auto;
-    max-width: 100%;
-    height: auto
-  }
-
-  .project-links {
-    margin: 12px 0 28px 0;
-  }
-
-  .pill-link {
-    display: inline-block;
-    margin-right: 12px;
-    padding: 6px 14px;
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-    background-color: #f2f2f2;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-  }
-
-  .pill-link:hover {
-    background-color: #e6e6e6;
-    transform: translateY(-1px);
-  }
-
-  .callout {
-    padding: 16px 20px;
-    margin: 24px 0;
-    border-left: 4px solid #0366d6; /* GitHub blue */
-    background-color: #f6f8fa;
-    border-radius: 6px;
-    font-size: 16px;
-    color: #24292e;
-  }
-
-  .callout-title {
-    font-weight: 600;
-    display: block;
-    margin-bottom: 4px;
-    color: #0366d6;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-  }
-  
-</style>
 
 
 # MedVec: ClinicalBERT-Powered Vector Diagnosis Recommender
 
 <div class="project-links">
-  <a href="https://edjpman.github.io/" class="pill-link">Home</a>
+  <a href="/" class="pill-link">Home</a>
   <a href="https://github.com/edjpman/medVec" class="pill-link">GitHub Repo</a>
 </div>
+
 
 ## TLDR - 2 minute summary
 
