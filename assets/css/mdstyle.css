@@ -2,4 +2,65 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  max-width: 800px; 
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h1, h2, h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #24292e;
+}
+
+.centered-image {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.project-links {
+  margin: 12px 0 28px 0;
+}
+
+.pill-link {
+  display: inline-block;
+  margin-right: 12px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0366d6;
+  background-color: #f1f8ff;
+  border: 1px solid rgba(3, 102, 214, 0.2);
+  transition: all 0.2s ease;
+}
+
+.pill-link:hover {
+  background-color: #0366d6;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.callout {
+  padding: 16px 20px;
+  margin: 24px 0;
+  border-left: 4px solid #0366d6;
+  background-color: #f6f8fa;
+  border-radius: 0 6px 6px 0;
+}
+
+.callout-title {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+  color: #0366d6;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
 }
