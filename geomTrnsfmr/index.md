@@ -5,10 +5,6 @@ permalink: /geomTrnsfmr/
 ---
 
 
-<link rel="stylesheet" href="{{ '/assets/css/mdstyle.css' | relative_url }}">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-
-
 # Geometric Sequence Transformer
 
 <div class="project-links">
