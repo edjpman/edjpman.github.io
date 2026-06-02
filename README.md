@@ -1,3 +1,11 @@
+<!--
+## Local Preview
+Requires Docker Desktop (https://www.docker.com/products/docker-desktop/).
+1. docker compose up
+2. Open http://localhost:4000 in your browser.
+Changes to files are reflected on refresh. No Ruby or gem install needed.
+-->
+
 # Applied Machine Learning Scientist 
 
 ### Education
