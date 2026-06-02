@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 <!--
 ## Local Preview
 Requires Docker Desktop (https://www.docker.com/products/docker-desktop/).
@@ -6,52 +10,44 @@ Requires Docker Desktop (https://www.docker.com/products/docker-desktop/).
 Changes to files are reflected on refresh. No Ruby or gem install needed.
 -->
 
-# Applied Machine Learning Scientist 
+# Ethan Parks
+**Applied Machine Learning Scientist**
 
-### Education
+MS Data Science · University of Arizona  
+Graduate Certificate in NLP · University of Arizona  
+BS Economics · Arizona State University
 
-MS Data Science - University of Arizona<br>
-Grad Cert Natural Language Processing - University of Arizona<br>
-BS Economics - Arizona State University
+---
 
-<br />
+## Transformers
 
-### Transformers
+#### [Representation Learning for Physiological Time Series](https://edjpman.github.io/geomTrnsfmr/)
+Applying transformer encoder architectures to ECG heartbeat classification — exploring whether
+language-model-style attention transfers to non-text sequential data.
 
-#### [Representation Learning for Physiological Time Series ](https://edjpman.github.io/geomTrnsfmr/)
+---
 
-<br />
+## Natural Language Processing
 
-### Natural Language Processing (NLP)
+#### [Encoders for Text Based Diagnostics](https://edjpman.github.io/medVec/)
+ClinicalBERT-powered vector embeddings for symptom-to-diagnosis classification across 22
+conditions.
 
-#### [Encoders for Text Based Diagnostics ](https://edjpman.github.io/medVec/)
+---
 
-<br />
+## Classical Machine Learning
 
-### Classical Machine Learning
+#### [NFL Outcome Modeling](https://edjpman.github.io/nflModel/)
+Predicting NFL game outcomes using classical ML pipelines — feature engineering on play-by-play
+data, model comparison, and calibration analysis.
 
-Coming soon...
+---
 
-<br />
+## AI Agents
 
-### High-Stakes AI Systems
+#### [Multi-Agent Systems](https://edjpman.github.io/agentSys/)
+*(NeurIPS preprint — link and description coming soon)*
 
-Coming soon...
-
-<br />
-
-### Published Papers
-
-Coming soon...
-
-<br />
+---
 
 [📄 Download Resume (PDF)](/assets/docs/Ethan_Parks_Resume_Jan2026.pdf)
-
-<iframe 
-  src="/assets/docs/Ethan_Parks_Resume_Jan2026.pdf" 
-  width="100%" 
-  height="900px"
-  style="border: none;">
-</iframe>
-
