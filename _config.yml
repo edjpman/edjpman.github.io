@@ -1,20 +1,19 @@
 title: Ethan Parks
 logo: /assets/img/IMG_5486.jpg
-description: Applied ML & NLP · Data Science MS · Mountain Athlete
+description: Applied ML & NLP · MS Data Science · Mountain Athlete
 theme: jekyll-theme-minimal
-
-#To render code correctly
 markdown: kramdown
-
 kramdown:
   input: GFM
   syntax_highlighter: rouge
-
-#For adding new links to site
 navigation:
   - title: Home
     url: /
-  - title: MedVec Project
-    url: /medVec/
-  - title: Geometry Transformer
+  - title: Physiological Time Series
     url: /geomTrnsfmr/
+  - title: Text Diagnostics (NLP)
+    url: /medVec/
+  - title: NFL Modeling
+    url: /nflModel/
+  - title: AI Agents
+    url: /agentSys/
