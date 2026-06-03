@@ -113,3 +113,32 @@ pre {
   border-radius: 8px;
   padding: 16px;
 }
+
+/* Avatar / profile image */
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 32px auto 16px auto;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+}
+
+/* Site nav bar */
+.site-nav {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px 24px 0 24px;
+}
+
+/* Footer */
+footer {
+  max-width: 800px;
+  margin: 48px auto 24px auto;
+  padding: 0 24px;
+  font-size: 14px;
+  color: #6e7781;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 16px;
+}
