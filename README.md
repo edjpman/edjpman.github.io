@@ -38,8 +38,7 @@ conditions.
 ## Classical Machine Learning
 
 #### [NFL Outcome Modeling](https://edjpman.github.io/nflModel/)
-Predicting NFL game outcomes using classical ML pipelines — feature engineering on play-by-play
-data, model comparison, and calibration analysis.
+Predicting NFL game outcomes using classical ML methods.
 
 ---
 
