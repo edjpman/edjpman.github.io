@@ -113,3 +113,75 @@ pre {
   border-radius: 8px;
   padding: 16px;
 }
+
+/* Avatar / profile image */
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 32px auto 16px auto;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+}
+
+/* Site nav bar */
+.site-nav {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px 24px 0 24px;
+}
+
+/* Footer */
+footer {
+  max-width: 800px;
+  margin: 48px auto 24px auto;
+  padding: 0 24px;
+  font-size: 14px;
+  color: #6e7781;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 16px;
+}
+
+/* Code block containers */
+pre {
+  background-color: #f6f8fa;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  margin: 24px 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Inline code */
+code:not(pre code) {
+  background-color: #f0f4f8;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+/* Section dividers */
+hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 40px 0;
+}
+
+/* Small caption text */
+small {
+  display: block;
+  margin-top: -16px;
+  margin-bottom: 24px;
+  color: #6e7781;
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.5;
+}
