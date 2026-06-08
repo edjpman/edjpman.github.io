@@ -2,6 +2,8 @@ title: Ethan Parks
 logo: /assets/img/IMG_5486.jpg
 description: Applied ML & NLP · MS Data Science · Mountain Athlete
 theme: jekyll-theme-minimal
+exclude:
+  - README.md
 markdown: kramdown
 kramdown:
   input: GFM

@@ -1,3 +1,8 @@
+---
+layout: home
+permalink: /
+---
+
 <!--
 ## Local Preview
 Requires Docker Desktop (https://www.docker.com/products/docker-desktop/).
